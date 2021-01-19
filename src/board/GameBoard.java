@@ -2,31 +2,30 @@ package board;
 
 import enums.Colors;
 import enums.Nation;
-import pawns.Guard;
-import pawns.Leader;
-import pawns.Pawn;
+import pawns.Team;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-public class GameBoard extends JFrame {
+public class GameBoard extends JFrame implements MouseListener {
 
     ArrayList<BoardTile> tiles;
-    ArrayList<Pawn> yellowSide;
-    ArrayList<Pawn> greenSide;
+    Team yellowSide = new Team(Nation.YELLOW,0,false);
+    Team greenSide = new Team(Nation.GREEN,4,true);
 
     /**
      * Constructor used for setting the main window and all objects used in the game
      */
     public GameBoard() {
         this.tiles = setTiles();
-        this.yellowSide = setYellowSide();
-        this.greenSide = setGreenSide();
 
         this.setSize(600, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.addMouseListener(this);
     }
 
     /**
@@ -39,7 +38,8 @@ public class GameBoard extends JFrame {
         super.paint(g);
 
         paintTiles(g);
-        paintEnemySides(g);
+        yellowSide.render(g);
+        greenSide.render(g);
     }
 
     /**
@@ -53,45 +53,8 @@ public class GameBoard extends JFrame {
         }
     }
 
-    /**
-     * Method, used for drawing the pawns on the screen
-     *
-     * @param g Graphics base class
-     */
-    private void paintEnemySides(Graphics g) {
-        for (int i = 0; i < 5; i++) {
-            yellowSide.get(i).render(g);
-            greenSide.get(i).render(g);
-        }
-    }
 
-    /**
-     * Sets the pawns for the Yellow nation
-     *
-     * @return ArrayList containing the pawn objects
-     */
-    private ArrayList<Pawn> setYellowSide() {
-        ArrayList<Pawn> pawns = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) pawns.add(new Guard(i, 0, Nation.YELLOW));
-        pawns.add(new Leader(4, 0, Nation.YELLOW));
-
-        return pawns;
-    }
-
-    /**
-     * Sets the pawns for the Green nation
-     *
-     * @return ArrayList containing the pawn objects
-     */
-    private ArrayList<Pawn> setGreenSide() {
-        ArrayList<Pawn> pawns = new ArrayList<>();
-
-        for (int i = 4; i > 0; i--) pawns.add(new Guard(i, 4, Nation.GREEN));
-        pawns.add(new Leader(0, 4, Nation.GREEN));
-
-        return pawns;
-    }
 
     /**
      * Creates all columns in the board
@@ -150,4 +113,27 @@ public class GameBoard extends JFrame {
         return centerTileColumn;
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
