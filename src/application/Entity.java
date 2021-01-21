@@ -28,19 +28,41 @@ public abstract class Entity {
         this.coordY = yPos * entitySize + yPos + offset;
     }
 
+    /**
+     * Returns the entity`s current position on the board.
+     *
+     * @return Horizontal position on board
+     */
     public int getXPos() {
         return this.xPos;
     }
 
+    /**
+     * Returns the entity`s current position on the board.
+     *
+     * @return Vertical position on board
+     */
     public int getYPos() {
         return this.yPos;
     }
 
+    /**
+     * Sets the entity`s horizontal position.
+     * Updates the horizontal coordinate where the current entity is positioned.
+     *
+     * @param newPos New horizontal position
+     */
     public void setXPos(int newPos) {
         this.xPos = newPos;
         this.coordX = xPos * entitySize + xPos + offset;
     }
 
+    /**
+     * Sets the entity`s vertical position.
+     * Updates the vertical coordinate where the current entity is positioned.
+     *
+     * @param newPos New vertical position
+     */
     public void setYPos(int newPos) {
         this.yPos = newPos;
         this.coordY = yPos * entitySize + yPos + offset;
