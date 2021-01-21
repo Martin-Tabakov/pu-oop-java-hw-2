@@ -23,6 +23,7 @@ public class Guard extends Pawn {
      */
     @Override
     public void render(Graphics g) {
+
         int sizeDiff = 5;
         g.setColor(borderColor);
         g.fillOval(coordX + inTileOffset, coordY + inTileOffset, pawnSize, pawnSize);

@@ -5,7 +5,7 @@ import enums.Nation;
 
 import java.awt.*;
 
-public abstract class Pawn extends Entity {
+public abstract class Pawn extends Entity{
 
     protected final int sizeScale = 2;
     protected final int offsetScale = 2;

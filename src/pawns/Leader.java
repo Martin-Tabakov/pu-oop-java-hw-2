@@ -26,5 +26,4 @@ public class Leader extends Pawn {
         g.setColor(fillColor);
         g.fillRect(coordX + inTileOffset, coordY + inTileOffset, pawnSize, pawnSize);
     }
-
 }

@@ -1,8 +1,7 @@
 package board;
 
 import enums.Colors;
-import enums.Nation;
-import pawns.Team;
+import Teams.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,15 +12,15 @@ import java.util.ArrayList;
 public class GameBoard extends JFrame implements MouseListener {
 
     ArrayList<BoardTile> tiles;
-    Team yellowSide = new Team(Nation.YELLOW,0,false);
-    Team greenSide = new Team(Nation.GREEN,4,true);
+    TeamManager teamManager;
+
 
     /**
      * Constructor used for setting the main window and all objects used in the game
      */
     public GameBoard() {
+        this.teamManager = new TeamManager();
         this.tiles = setTiles();
-
         this.setSize(600, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -38,8 +37,7 @@ public class GameBoard extends JFrame implements MouseListener {
         super.paint(g);
 
         paintTiles(g);
-        yellowSide.render(g);
-        greenSide.render(g);
+        teamManager.paintTeams(g);
     }
 
     /**
@@ -112,9 +110,9 @@ public class GameBoard extends JFrame implements MouseListener {
 
         return centerTileColumn;
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(teamManager.movePawn(e)) this.repaint();
     }
 
     @Override
